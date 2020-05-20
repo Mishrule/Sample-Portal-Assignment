@@ -75,7 +75,7 @@
 <html lang="en">
 
 <head>
-    <title>UEW-K OSIS</title>
+    <title>UEW-K | APPLY</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -88,6 +88,7 @@
     <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <link rel="icon" href="images/ico.png" type="image/gif" sizes="16x16">
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
@@ -284,7 +285,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            | <div class="row">
                                 <div class="col-md-12 form-group">
                                     <label for="nationalID">National ID:</label>
                                     <input type="text" id="nationalID" name="nationalID" class="form-control py-2">

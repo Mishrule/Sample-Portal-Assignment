@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Free Education Template by Colorlib</title>
+    <title>UEW-K | PERSONAL INFO</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <link rel="icon" href="images/ico.png" type="image/gif" sizes="16x16">
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
