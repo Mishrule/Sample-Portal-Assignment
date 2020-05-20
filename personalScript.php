@@ -1,5 +1,6 @@
 <?php  
     require_once('inc/portaldb.php');
+    require_once('inc/dateTime.php');
         $personalArray = array();
     if(isset($_POST['logindetail'])){
         
@@ -56,5 +57,44 @@
 
         echo $showUpdate;
         
+    }
+
+    // =====================================| LECTURER'S EVALUATION
+    $lectureShow = '';
+    if(isset($_POST['register'])){
+        $sid = mysqli_real_escape_string($conn, $_POST['sid']);
+        $courseCode = mysqli_real_escape_string($conn, $_POST['courseCode']);
+        $courseTitle = mysqli_real_escape_string($conn, $_POST['courseTitle']);
+        $semester = mysqli_real_escape_string($conn, $_POST['semester']);
+        $ayear = mysqli_real_escape_string($conn, $_POST['ayear']);
+        $evaluate = mysqli_real_escape_string($conn, $_POST['evaluate']);
+        $lecturerName = mysqli_real_escape_string($conn, $_POST['lecturerName']);
+        // $dateTime = mysqli_real_escape_string($conn, $_POST['agree']);
+
+        $lecturerSQL = "INSERT INTO lecturer_evaluation VALUES('$sid','$courseCode','$courseTitle','$semester','$ayear','$evaluate','$lecturerName','$dateTime')";
+
+        $lecturerResult = mysqli_query($conn, $lecturerSQL);
+
+        if($lecturerResult){
+            $lectureShow = '
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>'.$lecturerName.'</strong> Has has been evaluated Successfully...
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            ';
+        }else{
+            $lectureShow = '
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>'.mysqli_error($conn).'</strong> Fail to evaluation Lecture Try again...
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            ';
+        }
+        echo $lectureShow;
+
     }
 ?>
