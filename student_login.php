@@ -37,7 +37,7 @@
 
                     <ul class="navbar-nav absolute-right">
                         <li>
-                            <a href="login.html">Admin</a> / <a href="register.html">Student</a>
+                            <a href="admin_login.php">Admin</a> / <a href="student_login.php">Student</a>
                         </li>
                     </ul>
 

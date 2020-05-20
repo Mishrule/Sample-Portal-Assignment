@@ -38,21 +38,21 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tooltip"
                                 title="This displays information the institution has on your file. click to view. You can also update your address information here."
-                                href="index.html">Personal
+                                href="personal_info.php">Personal
                                 Information</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tooltip"
                                 title="At the end of each semester use this to evaluate lectures for the courses registered."
-                                href="blog.html">Lecturer
+                                href="lecturer_evaluation.php">Lecturer
                                 Evaluation</a>
                         </li>
 
                     </ul>
                     <ul class="navbar-nav absolute-right">
                         <li>
-                            <a href="register.html">Logout</a>
+                            <a href="logout.php">Logout</a>
                         </li>
                     </ul>
 
