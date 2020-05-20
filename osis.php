@@ -1,3 +1,7 @@
+<?php 
+    require_once('inc/portaldb.php');
+    require_once('student_session.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -52,7 +56,7 @@
                     </ul>
                     <ul class="navbar-nav absolute-right">
                         <li>
-                            <a href="logout.php">Logout</a>
+                            <a href="student_logout.php">Logout</a>
                         </li>
                     </ul>
 
@@ -85,7 +89,7 @@
                 <!-- END content -->
                 <div class="col-md-5 col-lg-5 order-md-2">
 
-                    <p>Messages:</p>
+                    <p>Messages: <span hidden>for index number <?php echo $student_login; ?></span></p>
                     <table class="table table-responsive">
                         <tr>
                             <td>You have 0 messages at this time</td>

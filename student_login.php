@@ -1,4 +1,5 @@
 <?php
+    $error = '';
     require_once('inc/portaldb.php');
     session_start();
     if(isset($_POST['studentLogin'])){
@@ -92,6 +93,7 @@
                 <div class="col-md-7">
                     <div class="form-wrap">
                         <h2 class="mb-4 text-center">Log in with your account</h2>
+                        <h3 class="text-center text-danger"><strong><?php echo $error; ?></strong></h3>
                         <form action="#" method="post">
                             <div class="row">
                                 <div class="col-md-12 form-group">

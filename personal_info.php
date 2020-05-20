@@ -1,3 +1,7 @@
+<?php
+    require_once('inc/portaldb.php');
+    require_once('student_session.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -52,7 +56,7 @@
                     </ul>
                     <ul class="navbar-nav absolute-right">
                         <li>
-                            <a href="logout.php">Logout</a>
+                            <a href="student_logout.php">Logout</a>
                         </li>
                     </ul>
 
@@ -67,40 +71,51 @@
     <div class="site-section bg-light element-animate">
         <div class="container">
             <h4><span style="color:blue; font-weight:bold;">Personal Data</span></h4>
+            <span id="checklogin" hidden><?php echo $student_login; ?></span>
             <div style="border:2px solid black;">
                 <div class="container">
                     <div class="row">
 
                         <div class="col-md-6 col-lg-6 order-md-1">
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
+                            <?php
+                                $personalSQL = "SELECT * FROM student_applied WHERE registrationnumber = '$student_login'";
+                                $personalResult = mysqli_query($conn, $personalSQL);
+                                $personalRow = mysqli_fetch_array($personalResult);
+                            ?>
+                            <p>Registration #:
+                                <strong><?php echo $personalRow['registrationnumber']?></strong>
+                            </p>
+                            <p>Name: <strong><?php echo $personalRow['studentname']?></strong></p>
+                            <p>Sex: <strong><?php echo $personalRow['sex']?></strong></p>
+                            <p>Date of Admission: <strong><?php echo $personalRow['admissiondate']?></strong></p>
+                            <p>Programme: <strong><?php echo $personalRow['program']?></strong></p>
+                            <p>Level at Admission: <strong><?php echo $personalRow['level']?></strong></p>
+                            <p>Nationality: <strong><?php echo $personalRow['nationality']?></strong></p>
+                            <p>SSN: <strong><?php echo $personalRow['ssn']?></strong></p>
+                            <p>Home Phone: <strong><?php echo $personalRow['homephone']?></strong></p>
+                            <p>Email: <strong><?php echo $personalRow['stuemail']?></strong></p>
+                            <p>Postal Address: <strong><?php echo $personalRow['postaladdress']?></strong></p>
+                            <p>Campus: <strong><?php echo $personalRow['campus']?></strong></p>
+                            <p>Session: <strong><?php echo $personalRow['session']?></strong></p>
                         </div>
                         <!-- END content -->
                         <div class="col-md-6 col-lg-6 order-md-2">
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
-                            <p>a</p>
+                            <p align="right">
+                                <img src="images/<?php echo $personalRow['image']?>" width="30%"
+                                    class="image img-thumbnail" alt="Student Image">
+                            </p>
+                            <p>Date Of Birth <strong><?php echo $personalRow['dob']?></strong></p>
+                            <p>Major: <strong><?php echo $personalRow['major']?></strong></p>
+                            <p>Current Level: <strong><?php echo $personalRow['currentlevel']?></strong></p>
+                            <p>National ID: <strong><?php echo $personalRow['nationalid']?></strong></p>
+                            <p>Mobile Phone: <strong><?php echo $personalRow['phone']?></strong></p>
+                            <p>Home Address: <strong><?php echo $personalRow['homeaddress']?></strong></p>
+
+                            <p align="right" style="margin-top:50px"><a href="#"
+                                    id="<?php echo $personalRow['registrationnumber']?>" name="edit" class="edit"
+                                    data-toggle="modal" data-target="#myModal">
+                                    <bold><i class="far fa-edit"></i>Edit</bold>
+                                </a></p>
                         </div>
                     </div>
                 </div>
@@ -110,8 +125,69 @@
         </>
     </div>
 
+    <!-- ======================================== Modal -->
 
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">Edit Personal Information</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="<?php $_PHP_SELF;?>" method="post" enctype="multipart/form-data">
+                        <div style="color:red;" id="showInfo" class="text-center"></div>
+
+                        <div class="row" hidden>
+                            <div class="col-md-12 form-group">
+                                <label for="stuReg">Reg:</label>
+                                <input type="text" id="stuReg" name="stuReg" class="form-control py-2" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="stuEmail">Email:</label>
+                                <input type="email" id="stuEmail" name="stuEmail" class="form-control py-2">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="postalAddress">Postal Address:</label>
+                                <input type="text" id="postalAddress" name="postalAddress" class="form-control py-2">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="phone">Mobile Phone:</label>
+                                <input type="text" id="phone" name="phone" class="form-control py-2">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="homeAddress">Home Address:</label>
+                                <input type="text" id="homeAddress" name="homeAddress" class="form-control py-2">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="btnupdate" name="btnupdate" value="btnupdate"
+                        class="btn btn-danger col-md-12" data-dismiss="modal">Update</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -138,5 +214,55 @@
 <script>
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
+
+    $('.edit').click(function() {
+        var logindetail = $(this).attr('id');
+
+        $.ajax({
+            url: 'personalScript.php',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                logindetail
+            },
+            success: function(data) {
+                $('#stuReg').val(data.stuReg);
+                $('#stuEmail').val(data.stuEmail);
+                $('#postalAddress').val(data.postalAddress);
+                $('#phone').val(data.phone);
+                $('#homeAddress').val(data.homeAddress);
+            }
+        })
+    });
+
+    // =========================| UPDATE |
+    $('#btnupdate').click(function() {
+        var stuReg = $('#stuReg').val();
+        var stuEmail = $('#stuEmail').val();
+        var stuPostal = $('#postalAddress').val();
+        var stuPhone = $('#phone').val();
+        var stuAddress = $('#homeAddress').val();
+        var btnupdate = $('#btnupdate').val();
+
+        if (confirm('Are you sure you want to update your information ')) {
+            $.ajax({
+                url: 'personalScript.php',
+                method: 'POST',
+                data: {
+                    stuReg,
+                    stuEmail,
+                    stuPostal,
+                    stuPhone,
+                    stuAddress,
+                    btnupdate
+                },
+                success: function(data) {
+                    $('#showInfo').html(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    })
 });
 </script>
