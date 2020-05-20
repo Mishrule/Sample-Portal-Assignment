@@ -1,3 +1,23 @@
+<?php
+    require_once('inc/portaldb.php');
+    session_start();
+    if(isset($_POST['studentLogin'])){
+        $studentName = mysqli_real_escape_string($conn, $_POST['studentName']);
+        $studentPassword = mysqli_real_escape_string($conn, $_POST['studentPassword']);
+
+        $studentLoginSQL = "SELECT * FROM student_applied WHERE studentname = '$studentName' AND registrationnumber = '$studentPassword'"; 
+
+        $studentLoginResult = mysqli_query($conn, $studentLoginSQL);
+
+        if(mysqli_num_rows($studentLoginResult)==1){
+            $_SESSION['registrationnumber'] = $studentPassword;
+            header('Location:personal_info.php');
+        }else{
+            $error = "Your Login Credentials are invalid Please Try again";
+        }
+        
+    }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -54,7 +74,7 @@
                 <div class="col-md-7 text-center">
 
                     <div class="mb-5 element-animate">
-                        <h1 class="mb-2">Log in</h1>
+                        <h1 class="mb-2">STUDENT LOG IN</h1>
                         <p class="bcrumb"><a href="index.html">Home</a> <span
                                 class="sep ion-android-arrow-dropright px-2"></span>
                             <span class="current">Log in</span></p>
@@ -71,24 +91,30 @@
             <div class="row justify-content-center">
                 <div class="col-md-7">
                     <div class="form-wrap">
-                        <h2 class="mb-4">Log in with your account</h2>
+                        <h2 class="mb-4 text-center">Log in with your account</h2>
                         <form action="#" method="post">
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <label for="name">Username</label>
-                                    <input type="text" id="name" class="form-control py-2">
+                                    <label for="studentName">Username</label>
+                                    <input type="text" id="studentName" name="studentName" class="form-control py-2">
                                 </div>
                             </div>
                             <div class="row mb-5">
                                 <div class="col-md-12 form-group">
-                                    <label for="name">Password</label>
-                                    <input type="password" id="name" class="form-control py-2">
+                                    <label for="studentPassword">Password</label>
+                                    <input type="password" id="studentPassword" name="studentPassword"
+                                        class="form-control py-2">
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <input type="submit" value="Login" class="btn btn-primary px-5 py-2">
+                                <div class="col-md-12 form-group">
+                                    <!-- <input type="submit" value="Login" class="btn btn-primary px-10 py-2"> -->
+                                    <div align="center">
+                                        <button type="submit" id="studentLogin" name="studentLogin" value="studentLogin"
+                                            class="btn btn-primary col-md-8 btn-md py-2">Login</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>
