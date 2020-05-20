@@ -11,7 +11,7 @@
 
         if(mysqli_num_rows($studentLoginResult)==1){
             $_SESSION['registrationnumber'] = $studentPassword;
-            header('Location:personal_info.php');
+            header('Location:osis.php');
         }else{
             $error = "Your Login Credentials are invalid Please Try again";
         }
